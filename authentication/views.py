@@ -32,22 +32,24 @@ def user_login(request):
         },
     )
 
+# def user_register(request):
+#     if request.method == 'POST':
+#         form = RegisterUserForm(request.POST)
+#         if form.is_valid():
+#             user = form.save(commit=False)
+#             user.role = form.cleaned_data['role']
+#             user.save()
+#             login(request, user)
+#             return redirect('items:index')
+#         else:
+            
+#             for field, errors in form.errors.items():
+#                 for error in errors:
+#                     messages.error(request, f"{error}")
+#     else:
+#         form = RegisterUserForm()
+#     return render(request, 'authentication/register.html', {'register_form': form})
 
 def user_register(request):
-    if request.method == 'POST':
-        form = RegisterUserForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.role = form.cleaned_data['role']
-            user.save()
-            login(request, user)
-            return redirect('items:index')
-        else:
-            
-            for field, errors in form.errors.items():
-                for error in errors:
-                    messages.error(request, f"{error}")
-    else:
-        form = RegisterUserForm()
-    return render(request, 'authentication/register.html', {'register_form': form})
-
+        messages.error(request, "Due to testing purposes, users are not allowed to add new accounts.")
+        return redirect('items:index') 

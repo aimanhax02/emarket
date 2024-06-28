@@ -14,5 +14,10 @@ def delivery_dashboard(request):
     delivery_items = ItemStatus.objects.filter(receipt__delivery_service=request.user, status__in=['Ready for Delivery', 'Out for Delivery']).order_by('created_at')
     order_history = ItemStatus.objects.filter(receipt__delivery_service=request.user, status__in=['Delivered', 'Completed']).order_by('-created_at')
 
+    if not delivery_items:
+        messages.info(request, 'No current orders found for this courier.')
+    if not order_history:
+        messages.info(request, 'No order history found for this courier.')
+
     return render(request, 'delivery/delivery_dashboard.html', {'delivery_items': delivery_items, 'order_history': order_history})
 
