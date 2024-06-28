@@ -33,7 +33,7 @@ def index(request):
             if item.is_on_sale:
                 item.discount = item.discounted_price()
     else:
-        items = Item.objects.filter(is_sold=False)[:8]
+        items = Item.objects.filter(is_sold=False)
 
         for item in items:
             if item.is_on_sale:
