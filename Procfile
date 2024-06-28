@@ -1,1 +1,1 @@
-web: gunicorn emarket-master.wsgi --log-file -
+web: gunicorn emarket.wsgi
