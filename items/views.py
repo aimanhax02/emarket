@@ -27,7 +27,7 @@ def index(request):
             items = Item.objects.filter(
                 seller__covered_locations__name=user_location,
                 is_sold=False
-            )[:8]
+            )
 
         for item in items:
             if item.is_on_sale:
@@ -113,7 +113,7 @@ def popular_items(request):
             messages.error(request, 'You do not have access to browse items.')
             return redirect('adminapp:admin_dashboard')
         
-    popular_items = Item.objects.filter(is_sold=False).order_by('-sold')[:8]
+    popular_items = Item.objects.filter(is_sold=False).order_by('-sold')
     
     for item in popular_items:
         if item.is_on_sale:
@@ -135,7 +135,7 @@ def new_arrivals(request):
             messages.error(request, 'You do not have access to browse items.')
             return redirect('adminapp:admin_dashboard')
         
-    items = Item.objects.filter(is_sold=False).order_by('-created_at')[:20]
+    items = Item.objects.filter(is_sold=False).order_by('-created_at')
     return render(request, 'items/new_arrivals.html', {'items': items})
 
 #About view
